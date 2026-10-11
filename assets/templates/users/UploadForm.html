@@ -1,0 +1,59 @@
+{%extends 'users/userbase.html'%}
+{%load static%}
+{%block content%}
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">
+                    <h1>Upload an Image to Identify the Material</h1><br>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div style="text-align: left;margin-left: 400px;">
+                            <input type="file" name="file" accept="image/*" required><br>
+                            <button type="submit" style="background-color: green;padding: 10px;border-radius: 6px;border: 1px;">Upload</button>
+                        </div>
+                    </div>
+                <div class="intro-heading"> 
+                    {% if path %}
+                    <div class="result">
+                        <h2>Uploaded Image:</h2>
+                        <img src="{{ path }}" alt="Uploaded Image">
+                    </div>
+                    {% endif %}
+            
+                    {% if result %}
+                    <div class="result">
+                        <h2>Prediction Result:</h2>
+                        <p>{{ result }}</p>
+                    </div>
+                    {% endif %}
+            
+                    {% if prediction_image_url %}
+                    <div class="result">
+                        <h2>Prediction Image:</h2>
+                        <img src="{{ prediction_image_url }}" alt="Prediction Image">
+                    </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">
+                    </h2>
+                    <h3 class="section-subheading text-muted">
+                        Trash and Recycle Material Identification is a machine learning-based project where users upload an image, and the model predicts the type of waste (e.g., cotton, battery, plastic). This helps in proper waste segregation and recycling.                    </h3>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+{%endblock%}
